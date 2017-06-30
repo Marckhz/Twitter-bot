@@ -1,18 +1,17 @@
-console.log("bot is online");;
+console.log("bot is online");
 
 var Twit = require('twit');
 var config = require('./config');
 var T = new Twit(config);
 var stream = T.stream('user');
 
-stream.on('follow',  followed);
+stream.on('follow', followed);
 function followed(eventFollow) {
 
   var name = eventFollow.source.name;
   var screenName  = eventFollow.source.screen_name;
   tweetIt('@' + screenName  + ' ' + 'did you get the message');
 }
-
 
 stream.on('tweet', tweetEvent);
 function tweetEvent(eventMsg){
@@ -24,11 +23,11 @@ function tweetEvent(eventMsg){
   console.log(replyto + ' ' + from);
 
   if(replyto === 'Coffe_Pot_slave'){
-    var newTweet = '@' + from + 'i am testing';
+
+    var newTweet = '@' + from + 'buidling';
     tweetIt(newTweet);
   }
 }
-
 function tweetIt(txt){
 
   var tweet =  {
@@ -44,6 +43,5 @@ function tweetIt(txt){
         else{
           console.log("working like a charm");
         }
-
       }
 }
