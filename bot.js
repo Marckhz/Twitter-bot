@@ -26,6 +26,7 @@ function tweetEvent(eventMsg){
 
     var newTweet = '@' + from + 'buidling';
     tweetIt(newTweet);
+    client.write('do coffe')
   }
 }
 function tweetIt(txt){
@@ -45,3 +46,24 @@ function tweetIt(txt){
         }
       }
 }
+
+var net = require('net');
+
+var client = new net.Socket();
+client.connect(5003, '192.168.0.4',
+
+      function(eventConnect){
+        console.log('online');
+        //client.write('Hello, server');
+});
+client.on('data',
+
+      function(data){
+        console.log('recieved' + data);
+        client.destroy();//end client
+});
+client.on('close',
+
+      function(eventClose){
+        console.log('offline');
+});
